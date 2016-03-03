@@ -14,7 +14,7 @@
         e = angular.module("onezone-datepicker.templates", [])
     }
     e.run(["$templateCache", function(e) {
-        e.put("onezone-datepicker.html", '<div class=onezone-content><div class=onezone-transclude><ng-transclude></ng-transclude></div><div class=onezone-datepicker ng-class="{ \'onezone-datepicker-show\' : datepicker.showDatepicker }"><div class=onezone-datepicker-modal ng-if="datepicker.showLoader || datepicker.showMonthModal || datepicker.showYearModal || datepicker.showTimeModal"><div class="onezone-datepicker-close-button icon ion-ios-close-outline" ng-if="datepicker.showMonthModal || datepicker.showYearModal" ng-click=closeModals()></div><ion-spinner icon=spiral class="spinner-dark onezone-datepicker-loader" ng-if=datepicker.showLoader></ion-spinner><div class=onezone-datepicker-modal-content ng-if=datepicker.showMonthModal><div class="onezone-datepicker-button onezone-datepicker-select-year" ng-click=openYearModal()>{{currentMonth.getFullYear()}}</div><div class=onezone-datepicker-modal-item ng-repeat="m in months track by $index" ng-class="{\'onezone-datepicker-modal-item-active\': currentMonth.getMonth() == $index}" ng-click=selectMonth($index)>{{m}}</div></div><div class=onezone-datepicker-modal-content ng-if=datepicker.showYearModal><ion-slide-box show-pager=false active-slide=selectedYearSlide><ion-slide ng-repeat="slide in yearSlides"><div class=onezone-datepicker-modal-item ng-repeat="year in slide.years" ng-click=selectYear(year) ng-class="{\'onezone-datepicker-modal-item-active\': currentMonth.getFullYear() == year}">{{year}}</div></ion-slide></ion-slide-box></div><div class=onezone-datepicker-modal-content ng-if=datepicker.showTimeModal><span class="input-label">เลือกเวลา</span><div class="row"><span class="button-small col col-offset-20 col-25"><button type="button" class="button button-clear button-small button-dark timePickerArrows marginBottom10" ng-click="increaseHours()"><i class="icon ion-chevron-up"></i></button><div ng-bind="time.hours" class="ipBoxes timePickerBoxText"></div><button type="button" class="button button-clear button-small button-darktimePickerArrows marginTop10" ng-click="decreaseHours()"><i class="icon ion-chevron-down"></i></button></span><label class="col col-10 timePickerColon"> : </label><span class="button-small col col-25"><button type="button" class="button button-clear button-small button-darktimePickerArrows marginBottom10" ng-click="increaseMinutes()"><i class="icon ion-chevron-up"></i></button><div ng-bind="time.minutes" class="ipBoxes timePickerBoxText"></div><button type="button" class="button button-clear button-small button-dark timePickerArrows marginTop10" ng-click="decreaseMinutes()"><i class="icon ion-chevron-down"></i></button></span></div><div class="col text-right"><span class="onezone-datepicker-selection-button ion-ios-close-outline" ng-click=hideDatepicker()></span> <span class="onezone-datepicker-selection-button ion-ios-checkmark" ng-click=setDate()></span></div></div></div><div class=row><div class=col-25><span class="onezone-datepicker-navigation-arrow ion-ios-arrow-back" ng-click=previousMonth()></span></div><div class="col text-center"><div class=onezone-datepicker-button ng-click=openMonthModal()>{{months[currentMonth.getMonth()]}} {{currentMonth.getFullYear()}}</div></div><div class="col-25 text-right"><span class="onezone-datepicker-navigation-arrow ion-ios-arrow-forward" ng-click=nextMonth()></span></div></div><div class=row><div class="col onezone-datepicker-week" ng-repeat="dayOfTheWeek in daysOfTheWeek track by $index">{{ dayOfTheWeek }}</div></div><div class=row ng-repeat="week in month" on-swipe-right=swipeRight() on-swipe-left=swipeLeft()><div class=col ng-repeat="day in week.days" ng-click="selectDate(day.fullDate, day.isDisabled)"><div class=onezone-datepicker-day ng-style="{ \'background-color\': day.highlight.color, \'color\': day.highlight.textColor }" ng-class="{ \'onezone-datepicker-current-day\' : day.isToday, \'onezone-datepicker-different-month\' : !day.isCurrentMonth, \'onezone-datepicker-active-day\' : sameDate(day.fullDate, selectedDate), \'onezone-datepicker-disable-day\' : day.isDisabled }">{{day.date}}</div></div></div><div class=row ng-if=!datepicker.calendarMode><div class=col><span class="onezone-datepicker-selection-button ion-ios-calendar-outline" ng-if=datepicker.showTodayButton ng-click=selectToday()></span></div><div class="col text-right"><span class="onezone-datepicker-selection-button ion-ios-close-outline" ng-if=!datepicker.hideCancelButton ng-click=hideDatepicker()></span> <span class="onezone-datepicker-selection-button ion-ios-checkmark" ng-if=!datepicker.hideSetButton ng-click=setDate()></span></div></div></div></div>')
+        e.put("onezone-datepicker.html", '<div class=onezone-content><div class=onezone-transclude><ng-transclude></ng-transclude></div><div class=onezone-datepicker ng-class="{ \'onezone-datepicker-show\' : datepicker.showDatepicker }"><div class=onezone-datepicker-modal ng-if="datepicker.showLoader || datepicker.showMonthModal || datepicker.showYearModal || datepicker.showTimeModal"><div class="onezone-datepicker-close-button icon ion-ios-close-outline" ng-if="datepicker.showMonthModal || datepicker.showYearModal" ng-click=closeModals()></div><ion-spinner icon=spiral class="spinner-dark onezone-datepicker-loader" ng-if=datepicker.showLoader></ion-spinner><div class=onezone-datepicker-modal-content ng-if=datepicker.showMonthModal><div class="onezone-datepicker-button onezone-datepicker-select-year" ng-click=openYearModal()>{{currentMonth.getFullYear()+yearOffSet}}</div><div class=onezone-datepicker-modal-item ng-repeat="m in months track by $index" ng-class="{\'onezone-datepicker-modal-item-active\': currentMonth.getMonth() == $index}" ng-click=selectMonth($index)>{{m}}</div></div><div class=onezone-datepicker-modal-content ng-if=datepicker.showYearModal><ion-slide-box show-pager=false active-slide=selectedYearSlide><ion-slide ng-repeat="slide in yearSlides"><div class=onezone-datepicker-modal-item ng-repeat="year in slide.years" ng-click=selectYear(year) ng-class="{\'onezone-datepicker-modal-item-active\': currentMonth.getFullYear() == year}">{{year+yearOffSet}}</div></ion-slide></ion-slide-box></div><div class=onezone-datepicker-modal-content ng-if=datepicker.showTimeModal><span class="input-label">เลือกเวลา</span><div class="row"><span class="button-small col col-offset-20 col-25"><button type="button" class="button button-clear button-small button-dark timePickerArrows marginBottom10" ng-click="increaseHours()"><i class="icon ion-chevron-up"></i></button><div ng-bind="time.hours" class="ipBoxes timePickerBoxText"></div><button type="button" class="button button-clear button-small button-darktimePickerArrows marginTop10" ng-click="decreaseHours()"><i class="icon ion-chevron-down"></i></button></span><label class="col col-10 timePickerColon"> : </label><span class="button-small col col-25"><button type="button" class="button button-clear button-small button-darktimePickerArrows marginBottom10" ng-click="increaseMinutes()"><i class="icon ion-chevron-up"></i></button><div ng-bind="time.minutes" class="ipBoxes timePickerBoxText"></div><button type="button" class="button button-clear button-small button-dark timePickerArrows marginTop10" ng-click="decreaseMinutes()"><i class="icon ion-chevron-down"></i></button></span></div><div class="col text-right"><span class="onezone-datepicker-selection-button ion-ios-close-outline" ng-click=hideDatepicker()></span> <span class="onezone-datepicker-selection-button ion-ios-checkmark" ng-click=setDate()></span></div></div></div><div class=row><div class=col-25><span class="onezone-datepicker-navigation-arrow ion-ios-arrow-back" ng-click=previousMonth()></span></div><div class="col text-center"><div class=onezone-datepicker-button ng-click=openMonthModal()>{{months[currentMonth.getMonth()]}} {{currentMonth.getFullYear()+yearOffSet}}</div></div><div class="col-25 text-right"><span class="onezone-datepicker-navigation-arrow ion-ios-arrow-forward" ng-click=nextMonth()></span></div></div><div class=row><div class="col onezone-datepicker-week" ng-repeat="dayOfTheWeek in daysOfTheWeek track by $index">{{ dayOfTheWeek }}</div></div><div class=row ng-repeat="week in month" on-swipe-right=swipeRight() on-swipe-left=swipeLeft()><div class=col ng-repeat="day in week.days" ng-click="selectDate(day.fullDate, day.isDisabled)"><div class=onezone-datepicker-day ng-style="{ \'background-color\': day.highlight.color, \'color\': day.highlight.textColor }" ng-class="{ \'onezone-datepicker-current-day\' : day.isToday, \'onezone-datepicker-different-month\' : !day.isCurrentMonth, \'onezone-datepicker-active-day\' : sameDate(day.fullDate, selectedDate), \'onezone-datepicker-disable-day\' : day.isDisabled }">{{day.date}}</div></div></div><div class=row ng-if=!datepicker.calendarMode><div class=col><span class="onezone-datepicker-selection-button ion-ios-calendar-outline" ng-if=datepicker.showTodayButton ng-click=selectToday()></span></div><div class="col text-right"><span class="onezone-datepicker-selection-button ion-ios-close-outline" ng-if=!datepicker.hideCancelButton ng-click=hideDatepicker()></span> <span class="onezone-datepicker-selection-button ion-ios-checkmark" ng-if=!datepicker.hideSetButton ng-click=setDate()></span></div></div></div></div>')
 }])
 }(), angular.module("onezone-datepicker.service", ["ionic"]).factory("onezoneDatepickerService", function() {
     "use strict";
@@ -92,8 +92,8 @@
             angular.isDefined(e.datepickerObject && angular.isDefined(e.datepickerObject.disableWeekend)) && (p = e.datepickerObject.disableWeekend), 
             angular.isDefined(e.datepickerObject) && angular.isDefined(e.datepickerObject.disableSwipe) && (d = e.datepickerObject.disableSwipe), 
             angular.isDefined(e.datepickerObject) && angular.isDefined(e.datepickerObject.disableDates) && angular.isArray(h) && (h = e.datepickerObject.disableDates), 
-            angular.isDefined(e.datepickerObject) && angular.isDefined(e.datepickerObject.months) && angular.isArray(e.datepickerObject.months) && 12 === e.datepickerObject.months.length ? e.months = e.datepickerObject.months : e.months = l(), 
-            angular.isDefined(e.datepickerObject) ? e.daysOfTheWeek = s(o, e.datepickerObject.daysOfTheWeek) : e.daysOfTheWeek = s(o, null), 
+            angular.isDefined(e.datepickerObject) && angular.isDefined(e.datepickerObject.months) && angular.isArray(e.datepickerObject.months) && 12 === e.datepickerObject.months.length ? e.months = e.datepickerObject.months : e.datepickerObject.region == 'th' ? e.months = _l() : e.months = l(), 
+            angular.isDefined(e.datepickerObject) && e.datepickerObject.region == 'th' ? e.daysOfTheWeek = _s(o, e.datepickerObject.daysOfTheWeek) : e.daysOfTheWeek = s(o, null), 
             angular.isDefined(e.datepickerObject) && angular.isDefined(e.datepickerObject.startDate) && angular.isDate(e.datepickerObject.startDate) ? (n = e.datepickerObject.startDate.getFullYear(), i = e.datepickerObject.startDate) : n = e.currentMonth.getFullYear() - 120, 
             angular.isDefined(e.datepickerObject) && angular.isDefined(e.datepickerObject.endDate) && angular.isDate(e.datepickerObject.endDate) ? (a = e.datepickerObject.endDate.getFullYear(), r = e.datepickerObject.endDate) : a = e.currentMonth.getFullYear() + 11, 
             angular.isDefined(e.datepickerObject) && angular.isDefined(e.datepickerObject.showDatepicker) && (g = e.datepickerObject.showDatepicker), 
@@ -140,13 +140,23 @@
         },
         l = function() {
             //var e = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+            var e = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+            // var e = ["ม.ค.", "ก.พ.", "มี.ค.", "เม.ย.", "พ.ค.", "มิ.ย.", "ก.ค.", "ส.ค.", "ก.ย.", "ต.ค.", "พ.ย.", "ธ.ค."];
+            return e
+        },
+        _l = function() {
+            //var e = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
             var e = ["ม.ค.", "ก.พ.", "มี.ค.", "เม.ย.", "พ.ค.", "มิ.ย.", "ก.ค.", "ส.ค.", "ก.ย.", "ต.ค.", "พ.ย.", "ธ.ค."];
             return e
         },
         s = function(e, t) {
             var n = [];
-            return n = angular.isDefined(t) && angular.isArray(t) && 7 === t.length ? angular.copy(t) : ["อา.", "จ.", "อ.", "พ.", "พฤ.", "ศ.", "ส."], angular.isDefined(e) && e === !0 && n.push(n.shift()), n
+            return n = angular.isDefined(t) && angular.isArray(t) && 7 === t.length ? angular.copy(t) : ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"], angular.isDefined(e) && e === !0 && n.push(n.shift()), n
         },
+        _s = function(e, t) {
+            var n = [];
+            return n = angular.isDefined(t) && angular.isArray(t) && 7 === t.length ? angular.copy(t) : ["อา.", "จ.", "อ.", "พ.", "พฤ.", "ศ.", "ส."], angular.isDefined(e) && e === !0 && n.push(n.shift()), n
+        },        
         p = function(e) {
             var t = e.getFullYear(),
                 n = e.getMonth() - 1;
@@ -194,9 +204,10 @@
     }
 
     function i(e, t) {
-        angular.isDefined(e.datepickerObject) && angular.isDefined(e.datepickerObject.date) && (e.datepickerObject.date = e.selectedDate), t.calendarMode || a(e, !0), angular.isDefined(t.callback) && t.callback(e.selectedDate)
+        angular.isDefined(e.datepickerObject) && angular.isDefined(e.datepickerObject.date) && (e.datepickerObject.date = e.selectedDate), t.calendarMode || a(e, !1), angular.isDefined(t.callback) && t.callback(e.selectedDate)
     }
     var r = function(e, r, o) {
+        e.datepickerObject.region == 'th' ? e.yearOffSet = 543 : e.yearOffSet = 0;
         var o = (new Date, 60*(new Date).getHours() * 60 + 60 * (new Date).getMinutes());
         e.inputEpochTime = e.datepickerObject.inputEpochTime ? e.datepickerObject.inputEpochTime : o,
         e.step = e.datepickerObject.step ? e.datepickerObject.step : 15,
@@ -234,8 +245,7 @@
             a || (e.selectedDate = n,
             e.month = e.createDatepicker(e.selectedDate),
             e.currentMonth = angular.copy(n),
-            e.selectedYearSlide = t.getActiveYearSlide(e.yearSlides, e.currentMonth.getFullYear()),(d.calendarMode || d.hideSetButton) && i(e,d)),
-            e.closeDateModals()    
+            e.selectedYearSlide = t.getActiveYearSlide(e.yearSlides, e.currentMonth.getFullYear())),e.datepickerObject.disableTime ? (d.calendarMode || d.hideSetButton) && i(e,d) : e.closeDateModals()   
         }, e.selectToday = function() {
             var n = new Date;
             e.selectedDate = n, e.month = e.createDatepicker(e.selectedDate), e.currentMonth = angular.copy(n), e.selectedYearSlide = t.getActiveYearSlide(e.yearSlides, e.currentMonth.getFullYear()), (d.calendarMode || d.hideSetButton) && i(e, d)
@@ -271,19 +281,14 @@
             e.datepicker.showTimeModal = !0
         }, e.hideDatepicker = function() {
             e.datepicker.showTimeModal = !1
-            // a(e, !1)
         }, e.setDate = function() {
-            var timeStr = e.time.hours + "." + e.time.minutes,
-            parts = timeStr.match(/(\d+)\.(\d+)/),
-            hours = parseInt(parts[1], 10),
-            minutes = parseInt(parts[2], 10);
-
-            e.datepickerObject.date.setHours(hours);
-            e.datepickerObject.date.setMinutes(minutes);
-
-            e.datepicker.showTimeModal = !1,
-            a(e, !1)
-            //i(e, d)
+            e.datepickerObject.disableTime ? i(e,d) : e.setTime()
+        }, e.setTime = function() {
+            var timeStr = e.time.hours + "." + e.time.minutes;
+            var parts = timeStr.match(/(\d+)\.(\d+)/);
+            var hours = parseInt(parts[1], 10);
+            var minutes = parseInt(parts[2], 10);
+            e.selectedDate.setHours(hours),e.selectedDate.setMinutes(minutes),e.datepicker.showTimeModal = !1,i(e, d)
         }, e.increaseHours = function(){
             e.time.hours = Number(e.time.hours), 12 == s.format && (12 != e.time.hours ? e.time.hours += 1 : e.time.hours = 1), 24 == s.format && (e.time.hours = (e.time.hours + 1) % 24), e.time.hours = e.time.hours < 10 ? "0" + e.time.hours : e.time.hours
         }, e.decreaseHours = function(){
